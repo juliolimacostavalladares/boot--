@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "main": "main.js",
   "license": "MIT",
+  "scripts": {
+    "start": "functions-framework --target=main"
+  },
   "dependencies": {
+    "@google-cloud/functions-framework": "^2.1.0",
     "axios": "^0.24.0",
     "faker": "5.5.3",
     "node-cron": "3.0.0",
