@@ -1,0 +1,11 @@
+{
+  "name": "boot-grab-point",
+  "version": "1.0.0",
+  "main": "main.js",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "faker": "^6.6.6",
+    "puppeteer": "^13.0.1"
+  }
+}
