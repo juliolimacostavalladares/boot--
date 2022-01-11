@@ -6,7 +6,6 @@ const cron = require('node-cron');
 const faker = require('faker');
 
 
-exports.main = () => {
     const data = {
         name: faker.name.firstName(),
         email: faker.internet.email(),
@@ -59,9 +58,8 @@ exports.main = () => {
     
         return {name: data.name, username: data.username, email: data.email, password: data.password}
     }
-    
         
     cron.schedule('*/0,3 * * * * *', async function() {
         Register()
     });
-}
+
