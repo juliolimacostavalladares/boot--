@@ -38,7 +38,7 @@ const faker = require('faker');
         await page.click('.btn.btn-white.d-none.d-md-block')
       
           
-    
+        await page.waitForSelector('input[name=fullname]')
       
         await page.type('input[name=fullname]', data.name, {delay: 2});
       
