@@ -5,12 +5,19 @@ const cron = require('node-cron');
 
 const faker = require('faker');
 
+const fromMilli = Date.parse(0);
+const dateOffset = faker.random.number(Date.parse(50) - fromMilli);
+
+const newDate = new Date(fromMilli + dateOffset);
+
+const dateTime = newDate.toJSON().split('T')[0].replace(/-/g, '/')
 
     const data = {
         name: faker.name.firstName(),
         email: faker.internet.email(),
         username: faker.internet.userName(),
         password: faker.internet.password(),
+        date: dateTime
     }
     
     async function Register () {
@@ -30,36 +37,40 @@ const faker = require('faker');
           }
         });
       
-        await page.goto('https://fusioncashss.xyz/5325938409614');
+        await page.goto('https://share.socialearn.co/u/juliolima1225');
       
         await page.waitForSelector('.btn.btn-white.d-none.d-md-block')
         await page.$eval('.btn.btn-white.d-none.d-md-block', e => e.setAttribute('target', ''))
       
         await page.click('.btn.btn-white.d-none.d-md-block')
-      
           
-        await page.waitForSelector('input[name=fullname]')
+        await page.waitForSelector('input[name="name"]')
       
-        await page.type('input[name=fullname]', data.name, {delay: 2});
+        await page.type('input[name="name"]', data.name, {delay: 2});
       
         await page.type('input[name=username]', data.username, {delay: 2});
       
         await page.type('input[name=email]', data.email, {delay: 2});
+
+        await page.$eval('select > option', e => e.removeAttribute('selected'))
+        await page.$eval('select > option:nth-child(2)', e => e.setAttribute('selected', ''))
       
         await page.type('input[name=password]', data.password, {delay: 2});
       
-        await page.type('input[name=passwordAgain]', data.password, {delay: 2});
+        await page.type('input[name="password_confirmation"]', data.password, {delay: 2});
       
-        await page.$eval('input[type="checkbox"]', e => e.setAttribute('checked', ''))
+        await page.$eval('input[name="terms"]', e => e.setAttribute('checked', ''))
       
-        await page.click('.btn.btn-auth.text-white.btn-block')
+        await page.click('button[type="submit"]')
     
         await browser.close()
     
-        console.log({name: data.name, username: data.username, email: data.email, password: data.password})
+        console.log({
+            name: data.name, username: data.username, 
+            email: data.email, password: data.password, date: dateTime
+        })
     }
         
     cron.schedule('*/0,1 * * * * *', async function() {
         Register()
     });
-

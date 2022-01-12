@@ -1,6 +1,11 @@
-var faker = require('faker');
+const faker = require('faker');
  
-var randomPhoneNumber = faker.phone.phoneNumber();
-var randomEmail = faker.internet.email();
+const fromMilli = Date.parse(0);
+const dateOffset = faker.random.number(Date.parse(50) - fromMilli);
 
-console.log(randomPhoneNumber, randomEmail)
+const newDate = new Date(fromMilli + dateOffset);
+
+const dateTime = newDate.toJSON().split('T')[0].replace(/-/g, '/')
+
+console.log(dateTime)
+
