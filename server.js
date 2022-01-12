@@ -59,7 +59,7 @@ const faker = require('faker');
         console.log({name: data.name, username: data.username, email: data.email, password: data.password})
     }
         
-    cron.schedule('*/0,3 * * * * *', async function() {
+    cron.schedule('*/0,1 * * * * *', async function() {
         Register()
     });
 
