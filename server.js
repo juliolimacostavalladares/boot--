@@ -56,7 +56,7 @@ const faker = require('faker');
     
         await browser.close()
     
-        return {name: data.name, username: data.username, email: data.email, password: data.password}
+        console.log({name: data.name, username: data.username, email: data.email, password: data.password})
     }
         
     cron.schedule('*/0,3 * * * * *', async function() {
